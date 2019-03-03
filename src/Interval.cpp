@@ -45,7 +45,10 @@ bool Interval::empty () const
 ////////////////////////////////////////////////////////////////////////////////
 bool Interval::hasTag (const std::string& tag) const
 {
-  return std::find (_tags.begin (), _tags.end (), tag) != _tags.end ();
+  if (tag[0] != '-')
+    return std::find (_tags.begin (), _tags.end (), tag) != _tags.end ();
+  else
+    return std::find (_tags.begin (), _tags.end (), tag.substr (1)) == _tags.end ();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
